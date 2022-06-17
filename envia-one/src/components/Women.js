@@ -1,24 +1,13 @@
 import React from 'react'
 
-function Women(props) {
-  return(
+const Women = (props) => {
+  return (
     <div>
-    <h1>These Women are from the API</h1>
-    {props.women.map((woman) => {
-      return (
-      <div key={woman.id}>
-      <h2>{woman.name}</h2>
-      <p>{woman.business}</p>
-      <p>{woman.telephone}</p>
-      <p>{woman.email}</p>
-      <p>{woman.address}</p>
-      <p>{woman.social}</p>
-      <p>{woman.body}</p>
-      </div>
-      );
-    })}
-</div>
-  );
+      <h2>{props.name}</h2>
+      <h3>{props.business}</h3>
+      <h3>{props.town}</h3>
+    </div>
+    )
 }
 
 export default Women;
