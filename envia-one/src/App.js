@@ -3,9 +3,9 @@ import axios from "axios";
 import Women from "./components/Women"
 import { useEffect, useState } from 'react';
 
-const API_URL = "http//localhost:3000/api/v1/women;"
+const API_URL = "http://localhost:3000/api/v1/women"
 
-function getAPIData(){
+function getAPIData() {
   return axios.get(API_URL).then((response) => response.data)
 }
 
