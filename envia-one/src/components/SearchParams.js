@@ -13,9 +13,9 @@ const BUSINESS = ["Cafeteria", "Tapetes", "Bordados", "Bolsas", "Comedor",  "Mis
 const SearchParams = () => {
   const [town, setTown] = useState("");
   const [business, setBusiness] = useState("");
-  const [social, setSocial] = useState("");
+  const [product, setProduct] = useState("");
   const [women, setWomen] = useState([]);
-  const socials = [];
+  const products = [];
 
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const SearchParams = () => {
 
 //   async function requestWomen() {
 //     const res = await fetch (
-//       `http://localhost:3000/api/v1/women?business=${business}&town=${town}&social=${social}`
+//       `http://localhost:3000/api/v1/women?business=${business}&town=${town}&product=${product}`
 //     );
 //   const json = await res.json();
 
@@ -54,11 +54,11 @@ const SearchParams = () => {
           Business
           <select name="business" id="business" value={business} onChange={(e) => {
             setBusiness(e.target.value);
-            setSocial("");
+            setProduct("");
           }}
           onBlur={(e) => {
             setBusiness(e.target.value);
-            setSocial("");
+            setProduct("");
           }}
           >
             <option />
@@ -69,19 +69,19 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="social">
+        <label htmlFor="product">
           Social
-          <select disabled={!socials.length} name="social" id="social" value={social} onChange={(e) => {
-            setSocial(e.target.value);
+          <select disabled={!products.length} name="product" id="product" value={product} onChange={(e) => {
+            setProduct(e.target.value);
           }}
           onBlur={(e) => {
-            setSocial(e.target.value);
+            setProduct(e.target.value);
           }}
           >
             <option />
-            {socials.map((social) => (
-      <option key={social} value={social}>
-        {social}
+            {products.map((product) => (
+      <option key={product} value={product}>
+        {product}
               </option >
             ))}
           </select>
@@ -90,7 +90,7 @@ const SearchParams = () => {
       </form>
       {
   women.map((woman) => (
-    <Woman name={woman.name} business={woman.business} social={woman.social} key={woman.id} />
+    <Woman name={woman.name} business={woman.business} product={woman.product} key={woman.id} />
   ))}
     </div>
   )
