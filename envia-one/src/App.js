@@ -1,5 +1,6 @@
 import './App.css';
 import SearchParams from './components/SearchParams';
+// import axios from "axios";
 
 // const API_URL = "http://localhost:3000/api/v1/women"
 
@@ -10,16 +11,16 @@ import SearchParams from './components/SearchParams';
 // function App() {
 //   const[women, setWomen] = useState([]);
 
-//   useEffect(() => {
-//     let mounted = true;
-//     getAPIData().then((items) => {
-//       if (mounted) {
-//         setWomen(items);
-//       }
-//     });
+  // useEffect(() => {
+  //   let mounted = true;
+  //   getAPIData().then((items) => {
+  //     if (mounted) {
+  //       setWomen(items);
+  //     }
+  //   });
 
-//     return () => (mounted = false)
-//   }, []);
+  //   return () => (mounted = false)
+  // }, []);
 
 
 //   return (
@@ -34,7 +35,8 @@ const App = () => {
   return (
     <div>
       <h1>The Women of Fundación En Vía</h1>
-      <SearchParams />
+      <SearchParams/>
+
     </div>
   )
 }

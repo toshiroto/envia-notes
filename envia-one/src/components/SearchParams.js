@@ -2,20 +2,21 @@ import { useState, useEffect } from "react";
 import Woman from "./Woman";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/api/v1/women"
+ const API_URL = "http://localhost:3000/api/v1/women"
 
-function getAPIData() {
+ function getAPIData() {
   return axios.get(API_URL).then((response) => response.data)
-}
+ }
 
-const BUSINESS = ["Cafeteria", "Tapetes", "Ropa Tipica", "Bolsas", "Comedor",  "Miscelanea", "Tortillas", "Pollos"]
+const BUSINESS = ["Cafeteria", "Tapetes", "Bordados", "Bolsas", "Comedor",  "Miscelanea", "Tortillas", "Pollos"]
 
 const SearchParams = () => {
   const [town, setTown] = useState("");
   const [business, setBusiness] = useState("");
   const [social, setSocial] = useState("");
-  const socials = [];
   const [women, setWomen] = useState([]);
+  const socials = [];
+
 
   useEffect(() => {
     let mounted = true;
@@ -40,11 +41,7 @@ const SearchParams = () => {
 
 //   setWomen(json.women);
 // }
- {
-  women.map((woman) => (
-    <Woman name={woman.name} business={woman.business} social={woman.social} key={woman.id} />
-  ));
-}
+
 
   return (
     <div className="search-params">
@@ -91,6 +88,10 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
+      {
+  women.map((woman) => (
+    <Woman name={woman.name} business={woman.business} social={woman.social} key={woman.id} />
+  ))}
     </div>
   )
 }
