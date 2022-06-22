@@ -1,13 +1,11 @@
 import './App.css';
-import axios from "axios";
 import SearchParams from './components/SearchParams';
 
+// const API_URL = "http://localhost:3000/api/v1/women"
 
-const API_URL = "http://localhost:3000/api/v1/women"
-
-function getAPIData() {
-  return axios.get(API_URL).then((response) => response.data)
-}
+// function getAPIData() {
+//   return axios.get(API_URL).then((response) => response.data)
+// }
 
 // function App() {
 //   const[women, setWomen] = useState([]);

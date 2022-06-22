@@ -1,4 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Woman from "./Woman";
+import axios from "axios";
+
+const API_URL = "http://localhost:3000/api/v1/women"
+
+function getAPIData() {
+  return axios.get(API_URL).then((response) => response.data)
+}
 
 const BUSINESS = ["Cafeteria", "Tapetes", "Ropa Tipica", "Bolsas", "Comedor",  "Miscelanea", "Tortillas", "Pollos"]
 
@@ -7,6 +15,36 @@ const SearchParams = () => {
   const [business, setBusiness] = useState("");
   const [social, setSocial] = useState("");
   const socials = [];
+  const [women, setWomen] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    getAPIData().then((items) => {
+      if (mounted) {
+        setWomen(items);
+      }
+    });
+
+    return () => (mounted = false)
+  }, []);
+
+//   useEffect(() => {
+//     requestWomen();
+//   }, []);  // eslint-disable-line react-hooks/exhaustive-deps
+
+//   async function requestWomen() {
+//     const res = await fetch (
+//       `http://localhost:3000/api/v1/women?business=${business}&town=${town}&social=${social}`
+//     );
+//   const json = await res.json();
+
+//   setWomen(json.women);
+// }
+ {
+  women.map((woman) => (
+    <Woman name={woman.name} business={woman.business} social={woman.social} key={woman.id} />
+  ));
+}
 
   return (
     <div className="search-params">
