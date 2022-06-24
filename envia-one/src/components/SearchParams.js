@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Woman from "./Woman";
 import axios from "axios";
+import useProductList from "./useProductList";
 
 const API_URL = "http://localhost:3000/api/v1/women";
 
@@ -24,7 +25,7 @@ const SearchParams = () => {
   const [business, setBusiness] = useState("");
   const [product, setProduct] = useState("");
   const [women, setWomen] = useState([]);
-  const products = [];
+  const [products] = useProductList(business);
 
   useEffect(() => {
     let mounted = true;

@@ -5,7 +5,7 @@ const Woman = (props) => {
     <div>
       <h2>{props.name}</h2>
       <h3>{props.business}</h3>
-      <h3>{props.town}</h3>
+      <h3>{props.product}</h3>
     </div>
     )
 }

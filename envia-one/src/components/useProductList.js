@@ -25,7 +25,7 @@ export default function useProductList(business) {
     localCache[business] = json.products || [];
     setProductList(localCache[business]);
     setStatus("loaded");
-
   }
-  })
+  }, [business]);
+  return [productList, status];
 }
