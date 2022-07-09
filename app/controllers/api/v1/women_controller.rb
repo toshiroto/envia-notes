@@ -46,6 +46,6 @@ class Api::V1::WomenController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def woman_params
-      params.require(:woman).permit(:name, :business, :telephone, :email, :address, :social, :body)
+      params.require(:woman).permit(:name, :business, :telephone, :email, :address, :social, :body, :image, :town, :product)
     end
 end

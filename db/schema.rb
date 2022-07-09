@@ -12,18 +12,18 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_06_22_185111) do
   create_table "women", force: :cascade do |t|
-    t.string "name"
-    t.string "business"
-    t.integer "telephone"
-    t.string "email"
-    t.string "address"
-    t.string "social"
-    t.text "body"
+    t.string "Name"
+    t.string "Business"
+    t.integer "Telephone"
+    t.string "Email"
+    t.string "Address"
+    t.string "Social"
+    t.text "Body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
-    t.string "town"
-    t.string "product"
+    t.string "Image"
+    t.string "Town"
+    t.string "Product"
   end
 
 end
