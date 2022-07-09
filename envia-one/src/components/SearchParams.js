@@ -1,12 +1,13 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import Woman from "./Woman";
 import axios from "axios";
 import useProductList from "./useProductList";
+import Results from "./Results";
 
-const API_URL = "http://localhost:3000/api/v1/women";
+ const API_URL = "http://localhost:3000/api/v1/women";
 
 function getAPIData() {
-  return axios.get(API_URL).then((response) => response.data);
+  return axios.get(API_URL).then(response => response.data);
 }
 
 const BUSINESS = [
@@ -17,7 +18,7 @@ const BUSINESS = [
   "Comedor",
   "Miscelanea",
   "Tortillas",
-  "Pollos",
+  "Pollos"
 ];
 
 const SearchParams = () => {
@@ -28,24 +29,31 @@ const SearchParams = () => {
   const [products] = useProductList(business);
 
   useEffect(() => {
-    let mounted = true;
-    getAPIData().then((items) => {
+    requestWomen();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  let mounted = true;
+  async function requestWomen() {
+    getAPIData(
+      `http://localhost:3000/api/v1/women?business=${business}&town=${town}&product=${product}`
+    ).then((items) => {
       if (mounted) {
-        setWomen(items);
+        setWomen(items); //setwomen changed for requestWomen
       }
     });
+  }
 
-    return () => (mounted = false);
-  }, []);
+  //return () => (mounted = false);
 
-  //   useEffect(() => {
-  //     requestWomen();
-  //   }, []);  // eslint-disable-line react-hooks/exhaustive-deps
+  //}, []);
 
-  //   async function requestWomen() {
-  //     const res = await fetch (
-  //       `http://localhost:3000/api/v1/women?business=${business}&town=${town}&product=${product}`
-  //     );
+  // useEffect(() => {
+  //   requestWomen();
+  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // async function requestWomen() {
+  //   const res = await fetch(
+  //     `http://localhost:3000/api/v1/women?business=${business}&town=${town}&product=${product}`
+  //   );
   //   const json = await res.json();
 
   //   setWomen(json.women);
@@ -53,7 +61,12 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          requestWomen();
+        }}
+      >
         <label htmlFor="town">
           Town
           <input
@@ -86,8 +99,9 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
+
         <label htmlFor="product">
-          Social
+          Product
           <select
             disabled={!products.length}
             name="product"
@@ -110,16 +124,8 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
-      {women.map((woman) => (
-        <Woman
-          name={woman.name}
-          business={woman.business}
-          product={woman.product}
-          key={woman.id}
-        />
-      ))}
+      <Results women={women}/>
     </div>
   );
 };
-
 export default SearchParams;

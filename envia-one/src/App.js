@@ -1,6 +1,8 @@
+import React from "react";
 import './App.css';
 import SearchParams from './components/SearchParams';
 // import axios from "axios";
+
 
 // const API_URL = "http://localhost:3000/api/v1/women"
 

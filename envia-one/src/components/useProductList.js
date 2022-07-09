@@ -19,7 +19,8 @@ export default function useProductList(business) {
     setProductList([]);
     setStatus("loading");
 
-    const res = await fetch(`http://localhost:3000/api/v1/women/products?business=${business}`);
+
+    const res = await fetch(`http://localhost:3000/api/v1/women/product?business=${business}`);
 
     const json = await res.json();
     localCache[business] = json.products || [];
